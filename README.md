@@ -1,2 +1,2 @@
-# Curso JavaScript Otavio Miranda
- Aprendendo JavaScript
+# Curso JavaScript
+ Aprendendo JavaScript com Otávio Miranda
