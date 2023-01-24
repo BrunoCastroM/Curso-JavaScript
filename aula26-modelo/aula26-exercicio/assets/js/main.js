@@ -9,8 +9,12 @@ function meuEscopo() {
         const imc = peso.value / (altura.value * altura.value)
 
         if (isNaN(imc)) {
-            console.log(isNaN(imc))
-            resultado.innerHTML = `<p>Isso não é um número</p>`
+            resultado.innerHTML = ''
+            const p = document.createElement('p')
+            p.classList.add('erro')
+            p.innerHTML = 'Digite somente números.'
+            resultado.appendChild(p)
+
         } else {
             if (imc <= 18.5) {
                 resultado.innerHTML = `<p> O seu imc é ${imc.toFixed(2)}, você está abaixo do peso`
