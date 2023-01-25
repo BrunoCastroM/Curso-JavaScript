@@ -28,16 +28,16 @@ console.log(data4)
 
 
 // Exercício para formatar datas:
-function zeroAEsquerada(num) {
+function zeroAEsquerda(num) {
     return num >= 10 ? num : `0${num}`
 }
 function formatarData(data) {
-    const dia = zeroAEsquerada(data.getDate())
-    const mes = zeroAEsquerada(data.getMonth() + 1)
-    const ano = zeroAEsquerada(data.getFullYear())
-    const hora = zeroAEsquerada(data.getHours())
-    const min = zeroAEsquerada(data.getMinutes())
-    const sec = zeroAEsquerada(data.getSeconds())
+    const dia = zeroAEsquerda(data.getDate())
+    const mes = zeroAEsquerda(data.getMonth() + 1)
+    const ano = zeroAEsquerda(data.getFullYear())
+    const hora = zeroAEsquerda(data.getHours())
+    const min = zeroAEsquerda(data.getMinutes())
+    const sec = zeroAEsquerda(data.getSeconds())
 
     return `${dia}/${mes}/${ano} - ${hora}:${min}:${sec}`
 }

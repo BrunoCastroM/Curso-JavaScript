@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 :root {
-    --cor-primaria: rgba(14, 72, 85, 0.719);
-    --cor-primaria-escura: rgba(17, 86, 102, 0.897);
+    --cor-primaria: rgb(17, 86, 102);
+    --cor-primaria-escura: rgb(9, 48, 56);
 }
 
 * {
@@ -28,41 +28,4 @@ body {
     border-radius: 5px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.521);
 
-}
-
-form input,
-form label,
-form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-form input {
-    font-size: 24px;
-    height: 50px;
-    padding: 0 20px;
-    border-radius: 5px;
-}
-
-form input:focus {
-    outline: 1px solid var(--cor-primaria);
-}
-
-form button {
-    width: 80%;
-    margin: auto;
-    border: none;
-    background-color: var(--cor-primaria-escura);
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    height: 50px;
-    cursor: pointer;
-    margin-top: 30px;
-    border-radius: 5px;
-}
-
-form button:hover {
-    background-color: var(--cor-primaria);
 }
