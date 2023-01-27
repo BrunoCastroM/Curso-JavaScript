@@ -17,6 +17,6 @@ console.log(nome, sobrenome, idade, rua, numero);
 
 
 // Pegando tudo do objeto e colocando em outra variável, aqui também eu posso separar para pegar o resto de o objeto.
-const {...tudo} = pessoa
+const {...tudo} = pessoa;
 
-console.log(tudo)
+console.log(tudo);
