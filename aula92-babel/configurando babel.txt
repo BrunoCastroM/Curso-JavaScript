@@ -1,0 +1,8 @@
+- Incializando o babel:
+	npm init -y
+
+- Instalando os pacotes:
+	npm install --save-dev @babel/cli @babel/preset-env @babel/core
+
+- Colocando para o babel converter o script para um código mais compatível com versões anteriores de navegadores:
+	npx babel main.js -o bundle.js --presets=@babel/env
