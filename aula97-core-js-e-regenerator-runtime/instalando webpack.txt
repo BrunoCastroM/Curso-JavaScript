@@ -1,0 +1,45 @@
+1 - Inicializando o pacote:
+	npm init
+	npm init -y
+
+
+2 - Instalando as dependências:
+	npm install --save-dev @babel/preset-env @babel/cli @babel/core babel-loader webpack webpack-cli regenerator-runtime core-js
+
+OBS¹: Se eu quiser pegar uma pasta que já tenha o "package.json" com as dependências e está sem o "node_modules" eu só vou precisar instalar o npm:
+	npm install
+
+OBS²: Em vez de instalar nas "devDependencies" o core-js e o regenerator-runtime, eu posso colocá-los somente como dependências e utilzar o comando:
+	npm install core-js regenerator-rutime
+
+
+3 - Criar um arquivo chamado "webpack.config.js" e colocar essa config nele:
+
+const path = require('path');
+
+module.exports = {
+    mode: 'development',
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'public', 'assets', 'js'),
+        filename: 'bundle.js'
+    },
+    module: {
+        rules: [{
+            exclude: /node_modules/,
+            test: /\.js$/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/env']
+                }
+            }
+        }]
+    },
+    devtool: 'source-map'
+};
+
+
+4 - Agora vai no "package.json" e em "scripts" você vai colocar um nome para chave e depois "webpack -w" (o "-w" é para ficar para ficar sempre verificando o seu código) assistindo o seu o código. Ai para você exercutar o script você vai usar o comando:
+	npm run "nome da chave que você colocou"
+
