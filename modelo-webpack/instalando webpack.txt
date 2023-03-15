@@ -3,23 +3,23 @@
 	npm init -y
 
 
-2 - Instalando as dependências:
-	npm install --save-dev @babel/preset-env @babel/cli @babel/core babel-loader webpack webpack-cli regenerator-runtime core-js
+2 - Instalando as dependências de desenvolvimento:
+	npm install --save-dev @babel/preset-env @babel/cli @babel/core babel-loader webpack webpack-cli
 
 OBS¹: Se eu quiser pegar uma pasta que já tenha o "package.json" com as dependências e está sem o "node_modules" eu só vou precisar instalar o npm:
 	npm install
 
-OBS²: Em vez de instalar nas "devDependencies" o core-js e o regenerator-runtime, eu posso colocá-los somente como dependências e utilzar o comando:
-	npm install core-js regenerator-rutime
+2.1 - Instalando as outras dependências:
+	npm install core-js regenerator-rutime style-loader css-loader
 
 
 3 - Criar um arquivo chamado "webpack.config.js" e colocar essa config nele:
 
-const path = require('path');
+const path = require('path'); // CommonJS
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index.js',
+    mode: 'production',
+    entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'public', 'assets', 'js'),
         filename: 'bundle.js'
@@ -34,6 +34,9 @@ module.exports = {
                     presets: ['@babel/env']
                 }
             }
+        }, {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
         }]
     },
     devtool: 'source-map'

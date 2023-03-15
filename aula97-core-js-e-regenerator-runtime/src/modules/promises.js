@@ -11,5 +11,5 @@ function promise() {
 
 export default async function () {
     await promise();
-    console.log('terminou')
+    console.log('terminou');
 }
