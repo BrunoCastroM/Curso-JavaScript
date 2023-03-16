@@ -1,0 +1,41 @@
+1 - Inicializando o npm:
+    npm init
+        ou
+    npm init -y
+
+2 - Instalando pacote;
+    npm install "nome do pacote ou pacotes"
+    (Ex: npm install express)
+
+    OBS: Se que quiser atualizar os pacotes eu digito:
+        npm update
+        - Só funcionou usando esse comando:
+            	npm audit fix --force
+
+2.1 - Instalando dependências de desenvolvimento:
+    npm install --save-dev "nome do pacote ou pacotes"
+    (Ex: npm install --save-dev express)
+
+    OBS: Isso funciona se eu quiser jogar um pacote que está nas dependências para as dependências de desenvolvimento.
+
+2.2 - Jogando pacote de dev. dependências para as dependências normais:
+    npm install --save-prod "nome do pacote ou pacotes"
+    (Ex: npm install --save-prod express)
+
+2.3 - Instalando versões de pacotes especificas:
+    npm install "nome do pacote"@"versão"
+    (Ex: npm install express@4.18.1)
+
+3 - Desinstalando um pacote:
+    npm unistall "nome do pacote ou pacotes"
+    (Ex: npm uninstall express)
+
+4 - Verificando quais dependências foram instaladas no projeto
+    npm ls
+
+    OBS: Se eu quiser verificar mais a fundo do que foi instalado:
+        npm ls --depth="numero da profundidade"
+        (Ex: npm ls --depth="1")
+
+5 - Verificando pacotes desatualizado:
+    npm outdated
