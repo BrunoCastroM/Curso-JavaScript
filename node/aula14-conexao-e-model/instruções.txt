@@ -1,0 +1,80 @@
+1 - Você deve instalar o "dotenv" (ele vai criar variáveis de ambiente para gerenciar os pacotes assim eu não vou precisar colocar minha senha amostra no código):
+    npm i dotenv
+
+2 - Instalar o moogoose (ele vai fazer a modelagem dos dados do DB, vai fazer uma validação dos dados):
+    npm i mongoose
+
+3 - Fazendo a primeira conexão com a base de dados():
+
+    const mongoose = require('mongoose');
+    const connectionString = 'link da base de dados com as alterações necessárias feitas';
+    mongoose.connect(connectionString)
+        .then(() => {
+            app.emit('pronto')
+        })
+        .catch(e => console.log(e));
+
+    3.1 - Criando um escutador:
+
+    app.on('pronto', () => {
+        	app.listen(3000, () => {
+                console.log('Servidor executando na porta 3000');
+                console.log('Acessar http://localhost:3000');
+            });
+    });
+
+4 - Criando models com o "dotenv" para resolver problemas de dados sensíveis aparecendo no código:
+
+    4.1 - Importando o dotenv no arquivo "server.js":
+        require('dotenv').config();
+
+    4.2 - Criar um arquivo na raiz do projeto chamado ".env" e colocar informações sensíveis dentro dele (não esquecer de colocar ele no ".gitignore"), assim o você vai usar as informações importando as variáveis para o arquivo "server.js". Então não irá precisar de:
+    
+        "const connectionString = 'link da base de dados com as alterações necessárias feitas';"
+
+    E o "mongooseconnect" vai ficar assima agora:
+        mongoose.connect(process.env."nome da variável usada no ".env"")
+            .then(() => {
+                app.emit('pronto')
+            })
+            .catch(e => console.log(e));
+
+
+Criando o primeiro model:
+
+1 - Crie uma pasta chamada "models" dentro da pasta "src", lá irão ficar os seus models
+
+2 - Quando for criar os arquivos.js importe o mongoose:
+    ex: const mongoose = require('mongoose');
+
+3 - Mandar um objeto com as configurações dos dados:
+    ex: 
+    const HomeSchema = new mongoose.Schema({
+        titulo: {type: String, required:true},
+        descrição: String
+    });
+
+4 - Colocar o modelo em uma variável e exportar ele para ser usando no arquivo dentro da pasta controller:
+    const HomeModel = mongoose.model('Home', HomeSchema);
+    module.exports = HomeModel;
+
+5 - No arquivo dentro da pasta controller você vai importar o model e usá-lo para criar os dados:
+    const HomeModel = require('../models/HomeModel');
+    HomeModel.create({
+        titulo: 'Um título de testes',
+        descrição: 'Uma Descrição de testes'
+    })
+        .then(dados => console.log(dados))
+        .catch(e => console.log(e));
+
+6 - Se tudo deu certo você verá no database em conllections o dados que você acabou de criar. OBS: Para executar somente uma vez o servidor você pode usar o comando:
+    node "nome do arquivo do server"
+    (Ex: node server.js)
+
+OBS¹: para eu buscar os dados eu posso usar o "find()":
+    HomeModel.find()
+        .then(dados => console.log(dados))
+        .catch(e => console.log(e));
+
+OBS²: os controlers não são responsáveis por criar, válidar, buscar os dados será os models. A criação das instruções acima foi para fins didáticos.
+
