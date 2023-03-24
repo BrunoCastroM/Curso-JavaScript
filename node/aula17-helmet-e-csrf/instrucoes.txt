@@ -1,0 +1,55 @@
+1 - Instalando pacotes para deixar a aplicação mais segura (CSRF e Helmet):
+
+    npm i helmet csurf
+    
+    OBS: O csurf não é usado mais tanto por conta dos outros frameworks (react, angular, etc). Porém para fins de conhecimento seria bom entender.
+
+2 - Importar eles no serve.js:
+
+    const helmet = require('helmet');
+    const csrf = require('csurf');
+
+
+3 - Usando (dentro do server.js):
+
+    app.use(helmet());
+    app.use(csrf()); (antes do middlewares)
+
+    3.1 - Ainda não está previnido totalmente, pois devemos esconder os erros da aplicação para os usuários, pois se eu ussase e aplicação e ela desse erro ela iria mostrar nesse momento os erros, para evitar isso devemos criar outro middleware:
+
+        exports.checkCsrfError = (err, req, res, next) => {
+            if(err && 'EBADCSRFTOKEN' === err.code) {
+                return res.render('404');
+            }
+        };
+
+        OBS: O 404 vem de uma página que eu criei lá dentro da pasta includes dentro de views
+
+    3.2 - Colocar para carregar e usar o middleware:
+
+        const { middlewareGlobal, checkCsrfError } = require('./src/middlewares/middleware');
+        
+        app.use(checkCsrfError);
+
+    3.3 - Agora tenho que fazer enviar para todas as páginas um CSRFTOKEN, se não eu não consigo criar formulários na minha página (Criar outro middleware):
+
+        exports.csrfMiddleware = (req, res, next) => {
+            res.locals.csrf = req.csrfToken();
+            next();
+        };
+        
+
+    3.4 - Colocar para carregar e usar o middleware:
+
+        exports.csrfMiddleware = (req, res, next) => {
+            res.locals.csrfToken = req.csrfToken();
+                next();
+        };
+
+        app.use(csrfMiddleware);
+
+    3.5 - Usar o token criado nas etapas anteriores. Dentro de todo formulário que você criar do seu html você deve usar :
+
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+

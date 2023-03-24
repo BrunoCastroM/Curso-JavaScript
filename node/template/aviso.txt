@@ -1,0 +1,1 @@
+Esse template usa o padrão de projeto MVC (Model View  Controller)

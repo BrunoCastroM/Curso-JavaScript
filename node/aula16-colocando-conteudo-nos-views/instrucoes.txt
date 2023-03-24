@@ -1,0 +1,25 @@
+Express session -> Serve para Salvar determiados dados quando uma pessoa vai logar em algum app. Ex: quando a pessoa vai logar a primeira em um site ela faz a conta e se ela permitir que matenha o login, irá salvar essa sessão no navegador e não precisará mais ficar logando toda vez que acessar o site. OBS: Vamos salvar nossas sessões na base de dados do mongoDB.
+
+Flash messages -> São messagens que são salvas nas sessões, são parecidos com os pop ups, quando você vai logar e erra o login ele aparece uma msg dizendo que não pode acontecer o login. Hoje me dia não precisaria tanto desse recurso pois nos temos o react. Mas para fins didaticos é bom aprender
+
+1 - Instalando pacotes:
+    npm i express-session connect-mongo connect-flash
+
+2 - Ir no arquivos serve.js e importar os pacotes:
+    const session = require('express-session');
+    const MongoStore = require('connect-mongo');
+    const flash = require('connect-flash');
+
+3 - E fazer essas configs:
+    const sessionOptions = session({
+    secret: 'gergqwtrwqq4gqge',
+    store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        httpOnly: true
+        }
+    });
+    app.use(sessionOptions);
+    app.use(flash());
