@@ -1,0 +1,1 @@
+Esse projeto usa o padrão MVC (Model View  Controller)
