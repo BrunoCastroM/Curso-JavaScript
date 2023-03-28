@@ -33,7 +33,7 @@ class Login {
         if(!validator.isEmail(this.body.email)) this.errors.push('E-mail inválido.');
 
         // A senha precisa ter entre 8 e 30 caractéres
-        if(this.body.password.length <= 8 || this.body.password.length >= 30) {
+        if(this.body.password.length < 8 || this.body.password.length > 30) {
             this.errors.push('A senha precisa ter entre 8 e 30 caracteres.')
         };
     }
