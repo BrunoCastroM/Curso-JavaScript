@@ -1,0 +1,93 @@
+1 - Inicializar o react:
+    npx create-react-app nome-do-projeto
+    ou
+    npx create-react-app .  (se você já tiver criado a pasta do seu projeto)
+
+2 - Entre na pasta do projeto criado e escreva esse comando:
+    npm start
+
+3 - Eliminar coisas que já vieram por padrão na inicialização do react mas você não vai precisar:
+    3.1 - Na pasta "src" deixar somente os arquivos "APP.css", "APP.js", "index.js".
+
+    3.2 - Na pasta "public": "favicon.ico", as logos e o manifest.json. Se quiser apagar o rebots (serve para SEO), caso você nao for usar ele no projeto pode fazer isso, ou seja voc6e pode apagar tudo e deixar somente o index.html
+
+    3.3 - No index.js:
+        Obs: Toda vez que você for usar o formato JSX você deve importar o react
+        3.3.1 - Tirar todos os imports dos módulos que foram apagados
+    
+    3.4 - No app.js:
+        3.4.1 - Você pode apagar tudo para começar a usar os seus próprios componentes
+
+    3.5 - Na pasta "public" em index.html:
+        3.5.1 - Na tag "head" do html deixar somente o charset, viewport e o título e na tag "body" deletar os comentários
+
+    3.6 - No "App.css", você pode apagar tudo, e importar ele em qualquer componente, porém o conselho é que ele seja importado dentro do "App.js"
+
+4 - Gere um arquivo .editorconfing (precisa instalar a extensão) na raiz do projeto e coloque essas configuraçoes (você pode colocar do jeito que achar melhor para você):
+    root = true
+
+    [*]
+    indent_style = space
+    indent_size = 2
+    end_of_line = lf
+    charset = utf-8
+    trim_trailing_whitespace = true
+    insert_final_newline = true
+
+    4.1 - Nas configurações do seu VSCode você vai colocar essa configuração (para quando salvar o arquivo editado ele formatar automaticamente):
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true,
+        },
+
+5 - Instalar o es-lint e prettier:
+    npm i @babel/eslint-plugin prettier eslint-config-prettier eslint-plugin-prettier -D
+        e também:
+    npm install --save-dev @babel/preset-react
+
+
+    5.1 - Depois instalar a extensão do eslint no seu vscode
+
+    5.2 - Configurando o eslint (configure do jeito que você vai querer o seu projeto):
+        npx eslint --init (Vai criar um arquivo ".eslintrc.js" automaticamente na raiz do seu projeto)
+
+        Dica: Você pode instalar usando essas configurações:
+        
+            module.exports = {
+                env: {
+                    browser: true,
+                    es2021: true,
+                },
+                extends: [
+                    'plugin:react/recommended',
+                    'airbnb',
+                    'plugin:prettier/recommended',
+                ],
+                parser: '@babel/eslint-parser',
+                parserOptions: {
+                    ecmaFeatures: {
+                    jsx: true,
+                    },
+                    babelOptions: {
+                    presets: ['@babel/preset-react'],
+                    },
+                    ecmaVersion: 'latest',
+                    requireConfigFile: false,
+                    sourceType: 'module',
+                },
+                plugins: ['react', 'prettier', 'react-hooks'],
+                rules: {
+                    'prettier/prettier': 2,
+                    'react/jsx-filename-extension': 0,
+                    'import/prefer-default-export': 0,
+                    'react-hooks/rules-of-hooks': 'error',
+                    'react-hooks/exhaustive-deps': 'warn',
+                },
+                };
+
+    5.3 - Configurando o prettier:
+        5.3.1 - Crie um arquvio chamado "prettierrc" na raiz do seu projeto e coloque a configuração que você desejar. Exemplo:
+
+        {
+            "singleQuote": true,
+            "trailingComma": "es5"
+        }
