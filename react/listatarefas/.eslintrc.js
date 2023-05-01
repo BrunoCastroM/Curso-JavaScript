@@ -28,5 +28,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/state-in-constructor': 0,
+    'react/forbid-prop-types': 0,
   },
 };
