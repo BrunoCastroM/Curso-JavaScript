@@ -40,7 +40,8 @@
         },
 
 5 - Instalar o es-lint e prettier:
-    npm i @babel/eslint-plugin prettier eslint-config-prettier eslint-plugin-prettier -D
+	npm i @babel/eslint-parser prettier eslint-config-prettier eslint-plugin-prettier -D
+
         e também:
     npm install --save-dev @babel/preset-react
 
